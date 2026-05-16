@@ -554,84 +554,173 @@
       font-weight:800;
     }
     
-    .reward-row,.my-row{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:6px;
-      margin-top:6px;
-    }
+.reward-row,.my-row{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:6px;
+  margin-top:6px;
+}
 
-    .shop-row{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
-      margin-top:8px;
-    }
-    
-    .shop-icon-item{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:transparent;
-      border:none;
-      box-shadow:none;
-      padding:0;
-    }
-    
-    .shop-icon-img{
-      width:72px;
-      height:72px;
-      object-fit:contain;
-      cursor:pointer;
-    }
-    
-    .reward-item,.my-item,.summary-item{
-      background:rgba(255,255,255,.92);
-      border-radius:12px;
-      padding:7px;
-      font-size:11px;
-      line-height:1.4;
-      font-weight:800;
-    }
-    
-    .reward-head{
-      display:flex;
-      align-items:center;
-      gap:6px;
-      margin-bottom:4px;
-    }
-    
-    .reward-head img{
-      width:34px;
-      height:34px;
-      object-fit:contain;
-    }
-    
-    .reward-actions{
-      display:flex;
-      gap:6px;
-      margin-top:5px;
-    }
-    
-    .small-btn{
-      flex:1;
-      border:0;
-      border-radius:10px;
-      background:#fff3cb;
-      color:#5b3518;
-      font-size:11px;
-      font-weight:900;
-      padding:6px 4px;
-    }
-    .small-btn.primary{ background:#ffd46e; }
-    .small-btn:disabled{ opacity:.45; }
+.reward-item,.my-item,.summary-item{
+  background:rgba(255,255,255,.92);
+  border-radius:12px;
+  padding:7px;
+  font-size:11px;
+  line-height:1.4;
+  font-weight:800;
+}
 
-    .summary-list{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:6px;
-      margin-top:6px;
-    }
+.reward-head{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:4px;
+}
+
+.reward-head img{
+  width:34px;
+  height:34px;
+  object-fit:contain;
+}
+
+.reward-actions{
+  display:flex;
+  gap:6px;
+  margin-top:5px;
+}
+
+.shop-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:10px;
+}
+
+.shop-carousel{
+  width:100%;
+  display:grid;
+  grid-template-columns:52px 1fr 52px;
+  align-items:center;
+  gap:8px;
+}
+
+.shop-nav-btn{
+  border:0;
+  background:rgba(255,255,255,.22);
+  color:#5b3518;
+  font-size:26px;
+  font-weight:900;
+  border-radius:14px;
+  height:52px;
+}
+
+.shop-single-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.shop-single-card{
+  position:relative;
+  width:100%;
+  min-height:150px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:transparent;
+  border:none;
+  box-shadow:none;
+}
+
+.shop-single-img{
+  width:130px;
+  height:130px;
+  object-fit:contain;
+  cursor:pointer;
+  display:block;
+}
+
+.shop-count-badge{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  min-width:54px;
+  height:54px;
+  padding:0 14px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.28);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  color:#fff4c7;
+  font-size:26px;
+  font-weight:900;
+  text-shadow:0 1px 4px rgba(0,0,0,.35);
+  pointer-events:none;
+}
+
+.shop-bottom-actions{
+  display:flex;
+  gap:8px;
+  width:100%;
+  max-width:280px;
+}
+
+.shop-bottom-btn{
+  flex:1;
+  border:0;
+  border-radius:12px;
+  padding:10px 8px;
+  font-size:13px;
+  font-weight:900;
+  color:#5b3518;
+}
+
+.shop-clear-btn{
+  background:#ead9c1;
+}
+
+.shop-confirm-btn{
+  background:#ffd46e;
+}
+
+.shop-crop-name{
+  font-size:14px;
+  font-weight:900;
+  color:#5b3518;
+  text-align:center;
+}
+
+.shop-crop-meta{
+  font-size:11px;
+  color:#7b6a57;
+  text-align:center;
+}
+
+.small-btn{
+  flex:1;
+  border:0;
+  border-radius:10px;
+  background:#fff3cb;
+  color:#5b3518;
+  font-size:11px;
+  font-weight:900;
+  padding:6px 4px;
+}
+.small-btn.primary{ background:#ffd46e; }
+.small-btn:disabled{ opacity:.45; }
+
+.summary-list{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:6px;
+  margin-top:6px;
+}
     .map-nav{
       position:fixed;
       left:50%;
@@ -984,10 +1073,10 @@ const STORE_INFO = {
 
 const DEFAULT_CROPS = {
   cabbage:{name:"高麗菜", key:"cabbage", cost:5, unlockLevel:1},
-  carrot:{name:"胡蘿蔔", key:"carrot", cost:6, unlockLevel:1},
-  corn:{name:"玉米", key:"corn", cost:8, unlockLevel:2},
-  watermelon:{name:"西瓜", key:"watermelon", cost:10, unlockLevel:1},
-  strawberry:{name:"草莓", key:"strawberry", cost:12, unlockLevel:3}
+  carrot:{name:"胡蘿蔔", key:"carrot", cost:6, unlockLevel:2},
+  corn:{name:"玉米", key:"corn", cost:8, unlockLevel:3},
+  watermelon:{name:"西瓜", key:"watermelon", cost:10, unlockLevel:4},
+  strawberry:{name:"草莓", key:"strawberry", cost:12, unlockLevel:5}
 };
 
 let APP = {
@@ -1004,7 +1093,9 @@ let APP = {
   activePanel:"",
   need_phone:false,
   isSubmittingPhone:false,
-  pendingRedeemCrop:""
+  pendingRedeemCrop:"",
+  shopIndex:0,
+  shopCounts:{}
 };
 
 function getParam(name){
@@ -1464,48 +1555,221 @@ function renderShop(){
   const box = document.getElementById("shopList");
   box.innerHTML = "";
 
-  Object.keys(DEFAULT_CROPS).forEach(function(key){
-    const crop = DEFAULT_CROPS[key];
-    const lv = Number((APP.farm && APP.farm.level) || 1);
-    const locked = !!(crop.unlockLevel && lv < crop.unlockLevel);
+  const lv = Number((APP.farm && APP.farm.level) || 1);
 
-    const item = document.createElement("div");
-    item.className = "shop-icon-item";
+  const unlockedKeys = Object.keys(DEFAULT_CROPS).filter(function(key){
+    const crop = APP.crops[key] || DEFAULT_CROPS[key];
+    return lv >= Number(crop.unlockLevel || 1);
+  });
 
-    const img = document.createElement("img");
-    img.src = cropItemSrc(key);
-    img.alt = crop.name;
-    img.className = "shop-icon-img";
+  if(!unlockedKeys.length){
+    box.innerHTML = '<div class="shop-crop-meta">目前尚未解鎖任何種子</div>';
+    return;
+  }
 
-    if(locked){
-      img.style.opacity = "0.28";
-    }else{
-      img.onclick = function(){
-        buySeed(key, 1);
-      };
-    }
+  if(APP.shopIndex >= unlockedKeys.length) APP.shopIndex = 0;
+  if(APP.shopIndex < 0) APP.shopIndex = 0;
 
-    item.appendChild(img);
-    box.appendChild(item);
+  const key = unlockedKeys[APP.shopIndex];
+  const crop = APP.crops[key] || DEFAULT_CROPS[key];
+  const currentCount = Number(APP.shopCounts[key] || 0);
+  const owned = Number(APP.inventory[key] || 0);
+
+  const wrap = document.createElement("div");
+  wrap.className = "shop-carousel";
+
+  const prevBtn = document.createElement("button");
+  prevBtn.className = "shop-nav-btn";
+  prevBtn.type = "button";
+  prevBtn.textContent = "‹";
+  prevBtn.onclick = shopPrev;
+
+  const nextBtn = document.createElement("button");
+  nextBtn.className = "shop-nav-btn";
+  nextBtn.type = "button";
+  nextBtn.textContent = "›";
+  nextBtn.onclick = shopNext;
+
+  const center = document.createElement("div");
+  center.className = "shop-single-wrap";
+
+  const nameEl = document.createElement("div");
+  nameEl.className = "shop-crop-name";
+  nameEl.textContent = crop.name;
+
+  const card = document.createElement("div");
+  card.className = "shop-single-card";
+
+  const img = document.createElement("img");
+  img.className = "shop-single-img";
+  img.src = cropItemSrc(key);
+  img.alt = crop.name;
+  img.onclick = function(){
+    shopAddCurrent();
+  };
+
+  const badge = document.createElement("div");
+  badge.className = "shop-count-badge";
+  badge.textContent = currentCount;
+
+  const meta = document.createElement("div");
+  meta.className = "shop-crop-meta";
+  meta.textContent = "現有庫存：" + owned + "　價格：" + Number(crop.cost || 0) + " 點";
+
+  const actions = document.createElement("div");
+  actions.className = "shop-bottom-actions";
+
+  const clearBtn = document.createElement("button");
+  clearBtn.className = "shop-bottom-btn shop-clear-btn";
+  clearBtn.type = "button";
+  clearBtn.textContent = "清除";
+  clearBtn.onclick = shopClearCurrent;
+
+  const confirmBtn = document.createElement("button");
+  confirmBtn.className = "shop-bottom-btn shop-confirm-btn";
+  confirmBtn.type = "button";
+  confirmBtn.textContent = "確認購買";
+  confirmBtn.onclick = shopConfirmCurrent;
+
+  card.appendChild(img);
+  card.appendChild(badge);
+
+  actions.appendChild(clearBtn);
+  actions.appendChild(confirmBtn);
+
+  center.appendChild(nameEl);
+  center.appendChild(card);
+  center.appendChild(meta);
+  center.appendChild(actions);
+
+  wrap.appendChild(prevBtn);
+  wrap.appendChild(center);
+  wrap.appendChild(nextBtn);
+
+  box.appendChild(wrap);
+}
+
+  function getUnlockedShopKeys(){
+  const lv = Number((APP.farm && APP.farm.level) || 1);
+  return Object.keys(DEFAULT_CROPS).filter(function(key){
+    const crop = APP.crops[key] || DEFAULT_CROPS[key];
+    return lv >= Number(crop.unlockLevel || 1);
   });
 }
 
-function renderReward(){
-  const box = document.getElementById("rewardList");
-  box.innerHTML = "";
-  Object.keys(DEFAULT_CROPS).forEach(function(key){
-    const crop = DEFAULT_CROPS[key];
-    const div = document.createElement("div");
-    div.className = "reward-item";
-    div.innerHTML =
-      '<div class="reward-head"><img src="' + cropItemSrc(key) + '"><div>' +
-      '<div>' + crop.name + '</div>' +
-      '<div>兌換券：' + Number(((APP.farm && APP.farm.coupons) || {})[key] || 0) + '</div>' +
-      '</div></div>';
-    box.appendChild(div);
+function getCurrentShopKey(){
+  const keys = getUnlockedShopKeys();
+  if(!keys.length) return "";
+  if(APP.shopIndex >= keys.length) APP.shopIndex = 0;
+  if(APP.shopIndex < 0) APP.shopIndex = 0;
+  return keys[APP.shopIndex] || "";
+}
+
+function shopPrev(){
+  const keys = getUnlockedShopKeys();
+  if(!keys.length) return;
+  APP.shopIndex = (APP.shopIndex - 1 + keys.length) % keys.length;
+  renderShop();
+}
+
+function shopNext(){
+  const keys = getUnlockedShopKeys();
+  if(!keys.length) return;
+  APP.shopIndex = (APP.shopIndex + 1) % keys.length;
+  renderShop();
+}
+
+function shopAddCurrent(){
+  const key = getCurrentShopKey();
+  if(!key) return;
+  APP.shopCounts[key] = Number(APP.shopCounts[key] || 0) + 1;
+  renderShop();
+}
+
+function shopClearCurrent(){
+  const key = getCurrentShopKey();
+  if(!key) return;
+  APP.shopCounts[key] = 0;
+  renderShop();
+}
+
+async function shopConfirmCurrent(){
+  const key = getCurrentShopKey();
+  if(!key) return;
+
+  const qty = Number(APP.shopCounts[key] || 0);
+  if(qty <= 0){
+    showMsg("請先點圖片選擇數量");
+    return;
+  }
+
+  const ok = await buySeed(key, qty);
+  if(ok){
+    APP.shopCounts[key] = 0;
+    renderShop();
+  }
+}
+
+  function getUnlockedShopKeys(){
+  const lv = Number((APP.farm && APP.farm.level) || 1);
+  return Object.keys(DEFAULT_CROPS).filter(function(key){
+    const crop = APP.crops[key] || DEFAULT_CROPS[key];
+    return lv >= Number(crop.unlockLevel || 1);
   });
 }
 
+function getCurrentShopKey(){
+  const keys = getUnlockedShopKeys();
+  if(!keys.length) return "";
+  if(APP.shopIndex >= keys.length) APP.shopIndex = 0;
+  if(APP.shopIndex < 0) APP.shopIndex = 0;
+  return keys[APP.shopIndex] || "";
+}
+
+function shopPrev(){
+  const keys = getUnlockedShopKeys();
+  if(!keys.length) return;
+  APP.shopIndex = (APP.shopIndex - 1 + keys.length) % keys.length;
+  renderShop();
+}
+
+function shopNext(){
+  const keys = getUnlockedShopKeys();
+  if(!keys.length) return;
+  APP.shopIndex = (APP.shopIndex + 1) % keys.length;
+  renderShop();
+}
+
+function shopAddCurrent(){
+  const key = getCurrentShopKey();
+  if(!key) return;
+  APP.shopCounts[key] = Number(APP.shopCounts[key] || 0) + 1;
+  renderShop();
+}
+
+function shopClearCurrent(){
+  const key = getCurrentShopKey();
+  if(!key) return;
+  APP.shopCounts[key] = 0;
+  renderShop();
+}
+
+async function shopConfirmCurrent(){
+  const key = getCurrentShopKey();
+  if(!key) return;
+
+  const qty = Number(APP.shopCounts[key] || 0);
+  if(qty <= 0){
+    showMsg("請先點圖片選擇數量");
+    return;
+  }
+
+  const ok = await buySeed(key, qty);
+  if(ok){
+    APP.shopCounts[key] = 0;
+    renderShop();
+  }
+}
 function renderMy(){
   const box = document.getElementById("myCard");
   const m = APP.member || {};
@@ -1555,15 +1819,56 @@ function renderAll(){
 }
 
 async function buySeed(key, qty){
-  const res = await api("shopBuy", { line_user_id: APP.line_user_id, crop: key, qty: qty });
+  qty = Number(qty || 1);
+
+  const res = await api("shopBuy", {
+    line_user_id: APP.line_user_id,
+    crop: key,
+    qty: qty
+  });
+
+  appendDebug("shopBuy response = " + JSON.stringify(res || {}));
+
   if(!res || !res.ok){
     showMsg((res && res.message) || "購買失敗");
-    return;
+    return false;
   }
-  if(res.data && res.data.farm) APP.farm = res.data.farm;
-  if(res.data && res.data.inventory) APP.inventory = res.data.inventory;
-  showMsg("購買成功");
+
+  const data = res.data || {};
+
+  if(data.farm) APP.farm = data.farm;
+  else if(res.farm) APP.farm = res.farm;
+
+  if(data.inventory) APP.inventory = data.inventory;
+  else if(res.inventory) APP.inventory = res.inventory;
+
+  if(!APP.member) APP.member = {};
+
+  if(data.member){
+    APP.member = Object.assign({}, APP.member, data.member);
+  }else if(res.member){
+    APP.member = Object.assign({}, APP.member, res.member);
+  }
+
+  if(data.newPoint !== undefined){
+    APP.member.point = Number(data.newPoint || 0);
+    APP.member.points = Number(data.newPoint || 0);
+  }else if(res.newPoint !== undefined){
+    APP.member.point = Number(res.newPoint || 0);
+    APP.member.points = Number(res.newPoint || 0);
+  }
+
+  if(data.point !== undefined){
+    APP.member.point = Number(data.point || 0);
+    APP.member.points = Number(data.point || 0);
+  }else if(res.point !== undefined){
+    APP.member.point = Number(res.point || 0);
+    APP.member.points = Number(res.point || 0);
+  }
+
   renderAll();
+  showMsg(res.message || ("購買成功 x" + qty));
+  return true;
 }
 
 async function clickPlot(index){
