@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Farm Game UI</title>
+  <title>Farmmember</title>
 
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
@@ -12,6 +12,8 @@
   <style>
     :root{
       --plot-ratio:1 / 0.88;
+      --qr-dark:#f0dc8a;
+      --qr-light:#18352a;
     }
     *{
       box-sizing:border-box;
@@ -146,6 +148,7 @@
       89%{opacity:.75;}
       90%{opacity:0;}
     }
+
     #farmNightLight{
       position:absolute;
       top:30%;
@@ -280,22 +283,22 @@
       top:25.3%;
       width:75%;
       z-index:7;
-      min-height:34px;
+      min-height:20px;
     }
     .barcode svg{
-      width:80%;
+      width:62%;
       height:auto;
       display:block;
     }
     .barcode-empty{
-      width:80%;
-      min-height:34px;
+      width:62%;
+      min-height:22px;
       display:flex;
       align-items:center;
       justify-content:center;
       text-align:center;
       color:#dcba67;
-      font-size:14px;
+      font-size:12px;
       font-weight:1000;
       line-height:1.25;
       background:rgba(24,53,42,.78);
@@ -341,7 +344,8 @@
       width:100% !important;
       height:100% !important;
       display:block;
-      image-rendering:auto;
+      image-rendering:pixelated;
+      background:#18352a !important;
     }
 
     .weather-badge{
@@ -1299,8 +1303,8 @@ function renderPhoneBarcode(phoneVal){
       JsBarcode(nextSvg, cleanPhone, {
         format:"CODE128",
         displayValue:false,
-        width:2,
-        height:42,
+        width:1.2,
+        height:24,
         margin:0,
         background:"transparent",
         lineColor:"#1f1208"
@@ -1324,8 +1328,8 @@ function renderMemberQr(memberId){
       text:value,
       width:72,
       height:72,
-      colorDark:"#1f1208",
-      colorLight:"#fff8e8",
+      colorDark:"#f0dc8a",
+      colorLight:"#18352a",
       correctLevel:QRCode.CorrectLevel.H
     });
   }catch(e){
