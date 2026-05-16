@@ -39,7 +39,11 @@ async function postToGas(profile) {
   const text = await res.text();
   log("GAS raw response = " + text);
 
-  return text;
+  try {
+    return JSON.parse(text);
+  } catch (err) {
+    throw new Error("GAS 回傳不是合法 JSON: " + text);
+  }
 }
 
 async function main() {
@@ -80,8 +84,21 @@ async function main() {
     log("pictureUrl = " + (profile.pictureUrl || ""));
 
     setStatus("LIFF 成功，準備送到 GAS");
-    await postToGas(profile);
+    const gasRes = await postToGas(profile);
+
+    log("gasRes.ok = " + gasRes.ok);
+    log("gasRes.message = " + (gasRes.message || ""));
+
+    if (!gasRes.ok) {
+      throw new Error(gasRes.message || "GAS API 失敗");
+    }
+
     setStatus("LIFF 成功，GAS 呼叫完成");
+
+    sessionStorage.setItem("line_user_id", profile.userId || "");
+    sessionStorage.setItem("line_name", profile.displayName || "");
+    sessionStorage.setItem("line_picture", profile.pictureUrl || "");
+
     window.location.href = "./farm_game_ui.html";
 
   } catch (err) {
