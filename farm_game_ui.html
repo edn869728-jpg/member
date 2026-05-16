@@ -758,6 +758,23 @@
         padding:7px;
       }
     }
+
+    #debugCloseBtn{
+      position:absolute;
+      top:6px;
+      right:8px;
+      border:0;
+      background:transparent;
+      color:#ffe680;
+      font-size:18px;
+      font-weight:900;
+      cursor:pointer;
+      line-height:1;
+    }
+    
+    #debugContent{
+      padding-top:18px;
+    }
   </style>
 </head>
 <body>
@@ -802,7 +819,7 @@
 
       <div class="barcode" id="barcode"><svg id="barcodeSvg"></svg></div>
 
-      <div id="lineUserIdDebug" aria-hidden="true">debug loading...</div>
+      <div id="lineUserIdDebug" aria-hidden="true">   <button id="debugCloseBtn" type="button" onclick="hideDebugPanel()">✕</button>   <div id="debugContent">debug loading...</div> </div>
 
       <div class="weather-badge" id="weatherBadge">
         <span id="weatherBadgeText">📍埔里鎮 一般 25°C ☀️</span>
@@ -969,20 +986,21 @@ function getParam(name){
 }
 
 function setDebug(msg){
-  const el = document.getElementById("lineUserIdDebug");
+  const el = document.getElementById("debugContent");
   if(!el) return;
   el.textContent = String(msg || "");
 }
 
 function appendDebug(msg){
-  const el = document.getElementById("lineUserIdDebug");
+  const el = document.getElementById("debugContent");
   if(!el) return;
   const time = new Date().toLocaleTimeString();
   el.textContent += (el.textContent ? "\n" : "") + "[" + time + "] " + String(msg || "");
 
+  const box = document.getElementById("lineUserIdDebug");
   const text = String(msg || "").toLowerCase();
-  if(text.indexOf("失敗") >= 0 || text.indexOf("error") >= 0 || text.indexOf("找不到") >= 0){
-    el.classList.add("show");
+  if(box && (text.indexOf("失敗") >= 0 || text.indexOf("error") >= 0 || text.indexOf("找不到") >= 0)){
+    box.classList.add("show");
   }
 }
 
@@ -991,6 +1009,12 @@ function toggleDebugPanel(event){
   const el = document.getElementById("lineUserIdDebug");
   if(!el) return;
   el.classList.toggle("show");
+}
+
+  function hideDebugPanel(){
+  const el = document.getElementById("lineUserIdDebug");
+  if(!el) return;
+  el.classList.remove("show");
 }
 
 function dumpIdentityDebug(title){
