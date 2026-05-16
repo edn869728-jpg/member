@@ -82,7 +82,6 @@ async function main() {
     setStatus("LIFF 成功，準備送到 GAS");
     await postToGas(profile);
     setStatus("LIFF 成功，GAS 呼叫完成");
-    window.location.href = "./farm_game_ui.html";
 
   } catch (err) {
     const msg = err && err.message ? err.message : String(err);
