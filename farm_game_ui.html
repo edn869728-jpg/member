@@ -553,13 +553,39 @@
       line-height:1.45;
       font-weight:800;
     }
-    .shop-row,.reward-row,.my-row{
+    
+    .reward-row,.my-row{
       display:grid;
       grid-template-columns:repeat(2,1fr);
       gap:6px;
       margin-top:6px;
     }
-    .shop-item,.reward-item,.my-item,.summary-item{
+
+    .shop-row{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:8px;
+    }
+    
+    .shop-icon-item{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:transparent;
+      border:none;
+      box-shadow:none;
+      padding:0;
+    }
+    
+    .shop-icon-img{
+      width:72px;
+      height:72px;
+      object-fit:contain;
+      cursor:pointer;
+    }
+    
+    .reward-item,.my-item,.summary-item{
       background:rgba(255,255,255,.92);
       border-radius:12px;
       padding:7px;
@@ -567,22 +593,26 @@
       line-height:1.4;
       font-weight:800;
     }
-    .shop-head,.reward-head{
+    
+    .reward-head{
       display:flex;
       align-items:center;
       gap:6px;
       margin-bottom:4px;
     }
-    .shop-head img,.reward-head img{
+    
+    .reward-head img{
       width:34px;
       height:34px;
       object-fit:contain;
     }
-    .shop-actions,.reward-actions{
+    
+    .reward-actions{
       display:flex;
       gap:6px;
       margin-top:5px;
     }
+    
     .small-btn{
       flex:1;
       border:0;
@@ -1433,26 +1463,30 @@ function renderFarmSummary(){
 function renderShop(){
   const box = document.getElementById("shopList");
   box.innerHTML = "";
+
   Object.keys(DEFAULT_CROPS).forEach(function(key){
     const crop = DEFAULT_CROPS[key];
-    const owned = Number(APP.inventory[key] || 0);
-    const div = document.createElement("div");
-    div.className = "shop-item";
-    div.innerHTML =
-      '<div class="shop-head"><img src="' + cropItemSrc(key) + '"><div>' +
-      '<div>' + crop.name + '</div>' +
-      '<div>價格：' + Number(crop.cost || 0) + ' 點</div>' +
-      '<div style="font-size:10px;color:#888;margin-top:2px;">庫存 ' + owned + '</div>' +
-      '</div></div>';
-    const actions = document.createElement("div");
-    actions.className = "shop-actions";
-    const buy1 = document.createElement("button");
-    buy1.className = "small-btn";
-    buy1.textContent = "買 1";
-    buy1.onclick = function(){ buySeed(key, 1); };
-    actions.appendChild(buy1);
-    div.appendChild(actions);
-    box.appendChild(div);
+    const lv = Number((APP.farm && APP.farm.level) || 1);
+    const locked = !!(crop.unlockLevel && lv < crop.unlockLevel);
+
+    const item = document.createElement("div");
+    item.className = "shop-icon-item";
+
+    const img = document.createElement("img");
+    img.src = cropItemSrc(key);
+    img.alt = crop.name;
+    img.className = "shop-icon-img";
+
+    if(locked){
+      img.style.opacity = "0.28";
+    }else{
+      img.onclick = function(){
+        buySeed(key, 1);
+      };
+    }
+
+    item.appendChild(img);
+    box.appendChild(item);
   });
 }
 
