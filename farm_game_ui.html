@@ -781,7 +781,7 @@
           <img
             id="memberLevelImg"
             class="member-level-img"
-            src="https://pub-e41c0e5930434282a405e422bcc59113.r2.dev/FARM%20Game%20UI//lEVELsplit_1.png"
+            src="https://pub-e41c0e5930434282a405e422bcc59113.r2.dev/lv/split_1.png"
             alt="Lv.1"
             onclick="toggleDebugPanel(event)"
           >
@@ -1144,9 +1144,30 @@ function clampLevel_(level){
 function setLevelImage(level){
   const img = document.getElementById("memberLevelImg");
   if(!img) return;
-  const lv = clampLevel_(level);
-  img.src = BASE + "lEVELsplit_" + lv + ".png";
+
+  let lv = Number(level || 1);
+  if(isNaN(lv) || lv < 1) lv = 1;
+  if(lv > 18) lv = 18;
+  lv = Math.floor(lv);
+
+  const url = "https://pub-e41c0e5930434282a405e422bcc59113.r2.dev/lv/split_" + lv + ".png";
+
+  appendDebug("level image url = " + url);
+
+  img.style.display = "block";
   img.alt = "Lv." + lv;
+
+  img.onerror = function(){
+    appendDebug("level image load error => " + url);
+    img.onerror = null;
+    img.src = "https://pub-e41c0e5930434282a405e422bcc59113.r2.dev/lv/split_1.png";
+  };
+
+  img.onload = function(){
+    appendDebug("level image load ok => " + url);
+  };
+
+  img.src = url;
 }
 
 function levelProgressPercent(){
